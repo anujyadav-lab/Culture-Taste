@@ -1,11 +1,15 @@
 import Logo from "../Img/Swiggy-Emblem.png"
-import { useState,useEffect } from "react"
+import { useState,useEffect, useContext } from "react"
 
 import { Link } from "react-router-dom";
 import OnlineStatus from "../utils/useOnlineStatus";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
+
 
 const Header = () => {
+  
+  const {LoggedInUser} = useContext(UserContext)
 
   const [btn,setBtn]   = useState('login');
 
@@ -44,12 +48,11 @@ const Header = () => {
             <li className="">
               <Link to="/contact">Contact US</Link>
             </li>
+            <li>{LoggedInUser}</li>
             <li className="">Cart</li>
             <button className="login" onClick={()=> btn === 'login' ? setBtn('logout') : setBtn('login')}>{btn}</button>
           </ul>
         </div>             
-    
-    
     );
   };
 
