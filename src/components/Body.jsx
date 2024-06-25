@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import WhatsOnYourMind from "./WhatsOnYourMind";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useFilteredRes from "../utils/useFilteredRes";
+import { useContext } from "react";
+import UserContext from "../utils/userContext";
+
 
 const Body = () => {
+
+  const {LoggedInUser,setUserName} =  useContext(UserContext)
 
   const myfilteredRestuarant = useFilteredRes();
   const restaurantCardPromoted = withPromotedLabel(RestaurantCard);
@@ -30,6 +35,7 @@ const Body = () => {
             value={myfilteredRestuarant.searchText}
             onChange={(e) =>myfilteredRestuarant.setSearchText(e.target.value)}
           />
+          <input type="text" className=" border border-blue-400"  value={LoggedInUser} onChange={(e)=>setUserName(e.target.value)}></input>
 
           <button  className="mx-16 p-4 rounded-lg w-40 bg-slate-300" onClick={myfilteredRestuarant.handleSearch}>search</button>
           <button
